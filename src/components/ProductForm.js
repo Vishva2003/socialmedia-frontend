@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './ProductForm.css'
 
 const ProductForm = () => {
   const [product, setProduct] = useState({
@@ -37,6 +38,7 @@ const ProductForm = () => {
   // Handle file input changes (product images and seller logo)
   const handleFileChange = (e) => {
     const { name, files } = e.target;
+    console.log('File selected:', files[0]);
     setProduct(prevProduct => ({
       ...prevProduct,
       [name]: files[0] // Ensure to grab only the first file
@@ -61,7 +63,7 @@ const ProductForm = () => {
   
     // Append seller logo (file)
     if (product.seller.logo) {
-      formData.append('seller.logo', product.seller.logo);
+      formData.append('logo', product.seller.logo);
     }
   
     // Append seller text details
@@ -86,23 +88,39 @@ const ProductForm = () => {
   
 
   return (
+    <div class = 'form'>
+    
     <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <input type="text" name="title" value={product.title} onChange={handleChange} placeholder="Title" required />
-      <textarea name="description" value={product.description} onChange={handleChange} placeholder="Description" required></textarea>
-      <input type="number" name="original_price" value={product.original_price} onChange={handleChange} placeholder="Original Price" required />
-      <input type="number" name="offer_price" value={product.offer_price} onChange={handleChange} placeholder="Offer Price" required />
+      <div class='Productdisplay'>
+      <h4>ADD PRODUCT</h4>
+      <input class='productinput' type="text" name="title" value={product.title} onChange={handleChange} placeholder="Title" required />
+      <textarea class='productinput' name="description" value={product.description} onChange={handleChange} placeholder="Description" required></textarea>
+      <input class='productinput' type="number" name="original_price" title='Decimal Only' value={product.original_price} onChange={handleChange} placeholder="Original Price" required />
+      <input class='productinput' type="number" name="offer_price" title='Decimal Only' value={product.offer_price} onChange={handleChange} placeholder="Offer Price" required />
+      <div class='postimage'>
+      <label>Product Image:</label>
+      <input class='formproductimg' type="file" name="images" onChange={handleFileChange} /></div></div>
       
-      <input type="file" name="images" onChange={handleFileChange} />
-      
+      <div class='seller'>
       <h4>Seller Details</h4>
-      <input type="text" name="name" value={product.seller.name} onChange={handleSellerChange} placeholder="Seller Name" required />
-      <input type="file" name="logo" onChange={handleFileChange} />
-      <input type="number" name="rating" value={product.seller.rating} onChange={handleSellerChange} placeholder="Seller Rating" required />
-      <input type="text" name="warranty_offer" value={product.seller.warranty_offer} onChange={handleSellerChange} placeholder="Warranty Offer" required />
+      <input class='productinput' type="text" name="name" value={product.seller.name} onChange={handleSellerChange} placeholder="Seller Name" required />
+      <input class='productinput' type="number" name="rating" value={product.seller.rating} onChange={handleSellerChange} title='Range: 0.0 - 5.0' placeholder="Rating Ex:4.5" required />
+      <input class='productinput' type="text" name="warranty_offer" value={product.seller.warranty_offer} onChange={handleSellerChange} placeholder="Warranty Offer Ex:2year" required />
+      <div class='postimage'>
+      <label>Product Image:</label>
+      <input class='formproductimg' type="file" name="logo" onChange={handleFileChange} />
+      </div>
+      </div>
+      <div class = 'createbutton'>
 
-
-      <button type="submit">Create Product</button>
+      <button class="btn" type='submit'>
+        <span>
+          Create
+        </span>
+      </button>
+      </div>
     </form>
+    </div>
   );
 };
 

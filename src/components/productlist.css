@@ -1,94 +1,168 @@
 /* Container for the entire list */
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none;
+.productcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each product card */
+.product-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  height: fit-content;
+  margin: 10px;
+  width: 100%; /* Adjusted to fit container */
+  max-width: 500px; /* Limiting maximum width */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-items:hover {
+  transform: translateY(-5px);
+}
+
+.products {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Flexbox container for products */
+.productbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+/* Container for overall page layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.price{
+  display: flex;
+  gap: 10px;
+
+}
+
+.green{
+  color: Green;
+  font-weight: 500;
+}
+
+.red{
+  color: red;
+  text-decoration: line-through;
+}
+
+.seller{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveiw{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Product title */
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Product image */
+img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  max-width: 100%; /* Responsive image */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Description and pricing */
+p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* Seller details section */
+h3 {
+  margin-top: 15px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Seller information */
+.seller-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Reviews section */
+.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Individual review */
+.review {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Flexbox for the entire page */
+div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .product-items {
+    width: 90%; /* Make product cards wider on smaller screens */
+  }
+
+  .container {
     padding: 0;
   }
-  
-  /* Each product card */
-  li {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px;
-    width: 500px;
-    flex: 1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  .products{
-    width: 100%;
-    height: 100vh;
+}
+
+@media (max-width: 480px) {
+  .product-items {
+    width: 100%; /* Full width on very small screens */
   }
 
-  .productbox{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-  }
-
-  .container{
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Product title */
   h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    text-align: center;
+    font-size: 1.2em; /* Smaller title font size */
   }
-  
-  /* Product image */
-  img {
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  /* Description and pricing */
-  p {
-    margin: 5px 0;
-    text-align: center;
-  }
-  
-  /* Seller details section */
+
   h3 {
-    margin-top: 15px;
-    font-size: 1.2em;
-    text-align: center;
+    font-size: 1em; /* Smaller subtitle font size */
   }
-  
-  /* Seller information */
-  .seller-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  .productbox {
+    margin: 1rem;
   }
-  
-  /* Reviews section */
-  .reviews {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .review {
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 10px;
-    text-align: left;
-  }
-  
-  /* Flexbox for the entire page */
-  div {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
+}

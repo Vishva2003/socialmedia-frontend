@@ -25,27 +25,31 @@ const ProductList = () => {
 
   return (
     <div class='products'>
-      <ul>
+      <ul class='productcontainer'>
         {products.length === 0 ? (
           <p>No products found.</p>
         ) : (
           products.map(product => (
-            <li key={product.id}>
+            <li class='product-items' key={product.id}>
               
               <div class='productbox'>
-              <h2>{product.title}</h2>
               <img src={`${product.images}`} alt={product.title} style={{ width: '200px', height: 'auto' }} />
+              <h2>{product.title}</h2>
 
-              <p>{product.description}</p>
-              <p>Original Price: ${product.original_price}</p>
-              <p>Offer Price: ${product.offer_price}</p></div>
+              <div class='price'>
+              <p class='green'>Rs. {product.original_price}</p>
+              <p class='red'>{product.offer_price}</p></div>
+              
+              </div>
               <div class='container'>
-              <div>
-              <h3>Seller Details</h3>
-              {product.seller ? (
+              <p>{product.description}</p>
+
+                <div class='seller'>
+                <h3>Seller Details</h3>
+                {product.seller ? (
                 <>
+                  {product.seller.logo && <img src={product.seller.logo} alt={product.seller.name} style={{ width: '50px', height: 'auto' }} />}
                   <p>{product.seller.name}</p>
-                  {product.seller.logo && <img src={product.seller.logo} alt={product.seller.name} style={{ width: '100px', height: 'auto' }} />}
                   <p>Rating: {product.seller.rating}/5</p>
                 </>
               ) : (
@@ -53,6 +57,8 @@ const ProductList = () => {
               )}</div>
 
               <div>
+
+              <div class='reveiw'>
               <h3>Reviews</h3>
               {product.reviews.length > 0 ? (
                 product.reviews.map(review => (
@@ -66,11 +72,14 @@ const ProductList = () => {
                 <p>No reviews available.</p>
               )}</div>
               </div>
+              </div>
             </li>
           ))
         )}
       </ul>
     </div>
+
+    
   );
 };
 
